@@ -10,6 +10,8 @@ import com.example.tpSpring.model.Travel;
 public class TravelMapper {
 	
 	
+	
+	
 	public TravelDto toDto(Travel v) {
 		TravelDto vd = new TravelDto() ;
 		BeanUtils.copyProperties(v, vd);		

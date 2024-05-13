@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationDto {
-
+	private int id ;
 	private User user;
 	private Travel travel;
 	private Date date;

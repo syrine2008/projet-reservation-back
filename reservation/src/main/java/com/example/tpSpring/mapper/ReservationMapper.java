@@ -1,10 +1,11 @@
 package com.example.tpSpring.mapper;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
 import com.example.tpSpring.dto.ReservationDto;
 import com.example.tpSpring.model.Reservation;
-
+@Component
 public class ReservationMapper {
 
 	public ReservationDto toDto(Reservation r) {

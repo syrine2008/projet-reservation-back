@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.tpSpring.model.Reservation;
 import com.example.tpSpring.model.Travel;
+import com.example.tpSpring.model.User;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TravelDto {
 
-	
+	private int id ; 
 	private String name ; 
 	private String description ; 
 	private String departure ; 
@@ -31,8 +32,10 @@ public class TravelDto {
 	private Date endDate ; 
 	private Long price ; 
 	private int nbPlace ; 
-	private boolean disponibility ;
+	private String disponibility ;
 	private int note ; 
 	private String commentaire ; 
+	private String urlImage ;
+	private User owner;
 	
 }

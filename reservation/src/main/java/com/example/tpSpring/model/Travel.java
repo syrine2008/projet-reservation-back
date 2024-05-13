@@ -8,7 +8,10 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,14 +25,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Travel implements Serializable {
+public class Travel{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "travel_id")
 	private int id;
 	private String name;
@@ -42,11 +42,16 @@ public class Travel implements Serializable {
 	private Date endDate;
 	private Long price;
 	private int nbPlace;
-	private boolean disponibility;
+	private String disponibility;
 	private int note;
 	private String commentaire;
+	private String urlImage ;
 
-	@OneToMany(mappedBy = "travel", cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
+	@ManyToOne
+	@JoinColumn(name = "owner")
+	private User owner;
+
+//	@OneToMany(mappedBy = "travel", cascade = CascadeType.ALL)
+//	private List<Reservation> reservations;
 
 }

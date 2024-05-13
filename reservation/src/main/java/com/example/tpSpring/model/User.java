@@ -1,6 +1,5 @@
 package com.example.tpSpring.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -22,23 +22,26 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable{
+public class User {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int id ; 
 	private String name ; 
 	private String type ; 
 	private String email ; 
 	private String tel ; 
+	private Date date ; 
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Reservation> Reservations ; 
+	
+//	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+//	private List<Travel> travels ; 
+	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private List<Reservation> Reservations ; 
 	
 
 }
