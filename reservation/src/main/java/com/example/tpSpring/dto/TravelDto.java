@@ -2,7 +2,9 @@ package com.example.tpSpring.dto;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import com.example.tpSpring.model.Commentaire;
 import com.example.tpSpring.model.Reservation;
 import com.example.tpSpring.model.Travel;
 import com.example.tpSpring.model.User;
@@ -34,8 +36,8 @@ public class TravelDto {
 	private int nbPlace ; 
 	private String disponibility ;
 	private int note ; 
-	private String commentaire ; 
 	private String urlImage ;
 	private User owner;
+	private List<Commentaire> commentaires;
 	
 }

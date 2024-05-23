@@ -25,6 +25,7 @@ public class UserDto {
 	private String email ; 
 	private String tel ; 
 	private Date date ; 
+	
 //	private List<Travel> travels ; 
 //	private List<Reservation> Reservations ; 
 

@@ -11,10 +11,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.tpSpring.Repository.CommentaireRepository;
 import com.example.tpSpring.Repository.TravelRepository;
 import com.example.tpSpring.dto.FilterTravelDto;
 import com.example.tpSpring.dto.TravelDto;
+import com.example.tpSpring.dto.UserDto;
 import com.example.tpSpring.mapper.TravelMapper;
+import com.example.tpSpring.mapper.UserMapper;
 import com.example.tpSpring.model.Travel;
 import com.example.tpSpring.service.TravelService;
 import com.example.tpSpring.singleton.Singleton;
@@ -26,6 +29,10 @@ public class TravelServiceImp implements TravelService {
 	private TravelRepository travelRepository;
 	@Autowired
 	private TravelMapper travelMapper;
+	@Autowired
+	private UserMapper userMapper ;
+	@Autowired
+	private CommentaireRepository commentaireRepository;
 	
 	Singleton singleton = Singleton.getInstance();
 
@@ -88,7 +95,7 @@ public class TravelServiceImp implements TravelService {
 			while (resultSet.next()) {
 				TravelDto td = new TravelDto(); 
 				
-				td.setId(resultSet.getInt("travel_id"));
+				td.setId(resultSet.getInt("id"));
 				td.setName(resultSet.getString("name"));
 				td.setDescription(resultSet.getString("description"));
 				td.setDeparture(resultSet.getString("departure"));
@@ -100,9 +107,9 @@ public class TravelServiceImp implements TravelService {
 				td.setPrice(resultSet.getLong("price"));
 				td.setNbPlace(resultSet.getInt("nb_place"));
 				td.setDisponibility(resultSet.getString("disponibility"));
-				td.setNote(resultSet.getInt("note"));
-				td.setCommentaire(resultSet.getString("commentaire"));
-				
+				td.setUrlImage(resultSet.getString("url_image"));
+				td.setNote(commentaireRepository.calCalculSommesDesNotes(resultSet.getInt("id")).get());
+				td.setCommentaires(commentaireRepository.getCommantaireByTravelId(resultSet.getInt("id")).get());
 				result.add(td); 
 				
 				
@@ -116,6 +123,20 @@ public class TravelServiceImp implements TravelService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<String> getAllDestinatioins() {
+		
+		return travelRepository.getAllDestinations();
+	}
+
+	@Override
+	public List<TravelDto> getTravelByOwnerId(UserDto u) {
+		
+		return travelRepository.getTravelByOwnerId(userMapper.toEntity(u)).stream()
+				.map(travel -> travelMapper.toDto(travel))
+				.collect(Collectors.toList());
 	}
 
 }

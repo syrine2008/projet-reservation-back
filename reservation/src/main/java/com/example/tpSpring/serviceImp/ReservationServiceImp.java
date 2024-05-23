@@ -1,5 +1,6 @@
 package com.example.tpSpring.serviceImp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,8 +36,15 @@ public class ReservationServiceImp implements ReservationService{
 
 	@Override
 	public List<ReservationDto> getReservationsbyUserId(int id) {
-		Optional<Reservation> optionalReservation = reservationRepository.getReservationByUserId(id) ;
-		return null;
+	
+		
+		
+		return reservationRepository.getReservationByUserId(id)
+		.stream()
+		.map(resrvation ->  rservationMapper.toDto(resrvation))
+		.collect(Collectors.toList()) ; 
+		
+		
 	}
 
 	@Override

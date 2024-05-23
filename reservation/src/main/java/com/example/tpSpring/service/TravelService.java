@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.tpSpring.dto.FilterTravelDto;
 import com.example.tpSpring.dto.TravelDto;
+import com.example.tpSpring.dto.UserDto;
 
 
 public interface TravelService {
@@ -31,6 +32,15 @@ public interface TravelService {
 	 * @return
 	 */
 	public List<TravelDto> getFiltredTravel(List<FilterTravelDto> filters); 
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getAllDestinatioins() ;
+	
+	
+	public List<TravelDto> getTravelByOwnerId(UserDto u) ; 
 	
 
 }

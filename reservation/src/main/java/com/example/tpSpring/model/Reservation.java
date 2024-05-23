@@ -29,16 +29,17 @@ public class Reservation  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "reservation_id")
+	@Column(name = "id")
 	private int id  ; 
 	
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "iduser")
 	private User user ; 
     
     @ManyToOne
-    @JoinColumn(name = "travel_id")
+    @JoinColumn(name = "idtravel")
 	private Travel travel ; 
 	
-	private Date date ; 
+	private Date dateDebut ; 
+	private Date dateFin ; 
 }

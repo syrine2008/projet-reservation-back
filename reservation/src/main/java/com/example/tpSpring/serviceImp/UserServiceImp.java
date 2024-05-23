@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.tpSpring.Repository.UserRepository;
+import com.example.tpSpring.dto.EntityResponse;
 import com.example.tpSpring.dto.UserDto;
+import com.example.tpSpring.dto.UserInscriptionDto;
 import com.example.tpSpring.mapper.UserMapper;
 import com.example.tpSpring.model.User;
 import com.example.tpSpring.service.UserService;
@@ -40,10 +42,20 @@ class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public void createUser(UserDto ud) {
+	public EntityResponse<String> createUser(UserInscriptionDto udi) {
+		Optional<User> userOptional = userRepository.getUserByLogin(udi.getLogin()); 
+		if(userOptional.isPresent()) {
+			return new EntityResponse<>(false, "l'utilisateur existe deja ", "");
+		}else {
+			userRepository.save(userMapper.insciptioToEntity(udi)) ; 
+			return new EntityResponse<>(true, "user created ", "succes");	
+		}
+		
 
-		userRepository.save(userMapper.toEntity(ud));
+
 	}
+	
+	
 
 	@Override
 	public UserDto modifyUser(UserDto ud) {
@@ -71,6 +83,17 @@ class UserServiceImp implements UserService {
 	public List<UserDto> getAllUsers() {
 
 		return userRepository.findAll().stream().map(user -> userMapper.toDto(user)).collect(Collectors.toList());
+	}
+
+	@Override
+	public Optional<User> getConnexion(String login, String mdp) {
+		Optional<User> user = userRepository.connexion(login,mdp)  ;
+		if(user.isPresent()) {
+			return user ; 
+		}else {
+			return null ;
+		}
+		
 	}
 
 }

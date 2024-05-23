@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tpSpring.dto.FilterTravelDto;
 import com.example.tpSpring.dto.TravelDto;
+import com.example.tpSpring.dto.UserDto;
+import com.example.tpSpring.model.User;
 import com.example.tpSpring.service.TravelService;
 
 @RestController
@@ -39,10 +42,22 @@ public class TravelController {
 
 	}
 
-	@GetMapping("/filtredTravel")
+	@PostMapping("/filtredTravel")
 	public List<TravelDto> getFiltredTrqvel(@RequestBody List<FilterTravelDto> l) {
 
 		return travelService.getFiltredTravel(l);
+
+	}
+	@GetMapping("/destinations")
+	public List<String> getallDestinations() {
+
+		return travelService.getAllDestinatioins();
+
+	}
+	@PostMapping("/travelByOwnerId")
+	public List<TravelDto> getTravelByOwnerId(@RequestBody UserDto u) {
+
+		return travelService.getTravelByOwnerId(u);
 
 	}
 

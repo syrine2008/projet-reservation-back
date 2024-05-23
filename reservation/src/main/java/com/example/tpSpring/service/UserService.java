@@ -1,8 +1,12 @@
 package com.example.tpSpring.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.tpSpring.dto.EntityResponse;
 import com.example.tpSpring.dto.UserDto;
+import com.example.tpSpring.dto.UserInscriptionDto;
+import com.example.tpSpring.model.User;
 
 
 public interface UserService {
@@ -15,9 +19,10 @@ public interface UserService {
 	
 	/**
 	 * 
-	 * @param userDto
+	 * @param userDto inscription
+	 * @return 
 	 */	
-	public void createUser(UserDto ud);
+	public EntityResponse<String> createUser(UserInscriptionDto udi);
 	
 	/**
 	 * 
@@ -37,6 +42,13 @@ public interface UserService {
 	 * @return
 	 */
 	public List<UserDto> getAllUsers() ;
-	
+	/**
+	 * 
+	 * @param login
+	 * @param mdp
+	 * @return
+	 */
+	public Optional<User> getConnexion(String login , String mdp);
 
+	
 }

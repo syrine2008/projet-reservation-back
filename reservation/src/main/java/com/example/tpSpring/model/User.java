@@ -3,6 +3,8 @@ package com.example.tpSpring.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,13 +30,17 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
+	@Column(name = "id")
 	private int id ; 
 	private String name ; 
 	private String type ; 
 	private String email ; 
 	private String tel ; 
 	private Date date ; 
+	@JsonIgnore
+	private String login ;
+	@JsonIgnore
+	private String mdp ; 
 	
 	
 //	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)

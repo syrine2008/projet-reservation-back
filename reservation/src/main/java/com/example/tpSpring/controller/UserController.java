@@ -1,6 +1,7 @@
 package com.example.tpSpring.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.tpSpring.dto.EntityResponse;
 import com.example.tpSpring.dto.UserDto;
+import com.example.tpSpring.dto.UserInscriptionDto;
+import com.example.tpSpring.model.User;
 import com.example.tpSpring.service.UserService;
 
 @RestController
@@ -38,13 +42,10 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public UserDto createUser(@RequestBody UserDto ud) {
-		try {
-			userService.createUser(ud);
-			return ud;
-		} catch (Exception e) {
-			return null;
-		}
+	public EntityResponse<String> createUser(@RequestBody UserInscriptionDto udi) {
+		
+			return userService.createUser(udi);
+	
 
 	}
 
@@ -82,6 +83,13 @@ public class UserController {
 
 		userService.deleteUser(id);
 
+	}
+	
+	
+	@GetMapping("/connexion")
+	public Optional<User> connexion(@RequestParam("login") String login ,@RequestParam("mdp") String mdp) {
+		
+		return userService.getConnexion(login, mdp) ;
 	}
 
 }

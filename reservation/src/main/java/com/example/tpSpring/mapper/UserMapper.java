@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.example.tpSpring.dto.UserDto;
-
+import com.example.tpSpring.dto.UserInscriptionDto;
 import com.example.tpSpring.model.User;
 
 @Component
@@ -21,6 +21,12 @@ public class UserMapper {
 		BeanUtils.copyProperties(ud, u);
 		return u;
 
+	}
+	
+	public User insciptioToEntity(UserInscriptionDto uDi) {
+		User u = new User();
+		BeanUtils.copyProperties(uDi, u);
+		return u;
 	}
 
 }
