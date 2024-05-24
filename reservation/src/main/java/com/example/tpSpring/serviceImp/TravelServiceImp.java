@@ -139,4 +139,9 @@ public class TravelServiceImp implements TravelService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public void deleteTravelByid(int id) {
+		travelRepository.deleteById(id);
+	}
+
 }

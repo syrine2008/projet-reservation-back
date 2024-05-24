@@ -39,8 +39,15 @@ public interface TravelService {
 	 */
 	public List<String> getAllDestinatioins() ;
 	
-	
+	/**
+	 * 
+	 * @param UserDto
+	 * @return
+	 */
 	public List<TravelDto> getTravelByOwnerId(UserDto u) ; 
+	
+	
+	public void deleteTravelByid(int id) ; 
 	
 
 }

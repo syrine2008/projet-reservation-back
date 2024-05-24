@@ -60,5 +60,11 @@ public class TravelController {
 		return travelService.getTravelByOwnerId(u);
 
 	}
+	
+	@GetMapping("/deleteTravel")
+	public void deleteTravel(@RequestParam("id") int id) {
+		travelService.deleteTravelByid(id); 
+		
+	}
 
 }
