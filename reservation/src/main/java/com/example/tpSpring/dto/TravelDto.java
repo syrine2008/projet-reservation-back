@@ -2,14 +2,10 @@ package com.example.tpSpring.dto;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import com.example.tpSpring.model.Commentaire;
-import com.example.tpSpring.model.Reservation;
-import com.example.tpSpring.model.Travel;
 import com.example.tpSpring.model.User;
 
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
